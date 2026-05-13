@@ -10,7 +10,7 @@ export default function WatchedSummary() {
   const avgImdbRating = avgImdbRatingTotal / watched.length;
 
   const avgRuntimeTotal = watched.reduce(
-    (acc, item) => acc + Number(item.Runtime),
+    (acc, item) => acc + Number(item.Runtime.split(" ")[0]),
     0,
   );
   const avgRuntime = avgRuntimeTotal / watched.length;
