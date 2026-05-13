@@ -37,10 +37,10 @@ function NavBar({ children }: NavBar) {
 function InputBar() {
   const [input, setInput] = useState("");
   const dispatch = useDispatch<AppDispatch>();
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }, []);
   return (
     <input
