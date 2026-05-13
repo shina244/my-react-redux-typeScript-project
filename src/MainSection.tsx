@@ -10,6 +10,7 @@ import { onSelectMovie } from "./state/watchedSlice";
 import WatchedSummary from "./WatchedSummary";
 import Loading from "./Loading";
 import ErrorMessage from "./ErrorMessage";
+import { type ReactNode } from "react";
 interface Main {
   children: ReactElement[];
 }
@@ -17,7 +18,7 @@ interface Box {
   children: ReactElement;
 }
 interface Boxes {
-  children: ReactElement[];
+  children: ReactNode;
 }
 export default function MainSection() {
   const watched = useSelector((state: RootState) => state.watched);

@@ -1,4 +1,11 @@
-export default function MovieBox({ item, onClick }) {
+import { type MovieState } from "./state/omdbSlice";
+
+interface Movie {
+  item: MovieState;
+  onClick: any;
+}
+
+export default function MovieBox({ item, onClick }: Movie) {
   return (
     <li onClick={onClick}>
       <img src={`${item.Poster}`} alt={`${item.Title} poster`} />

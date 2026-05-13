@@ -1,7 +1,11 @@
 import { useDispatch } from "react-redux";
 import { onFilter } from "./state/watchedSlice";
+import { type WatchedMovie } from "./state/watchedSlice";
 
-export default function Watched({ item }) {
+interface Item {
+  item: WatchedMovie;
+}
+export default function Watched({ item }: Item) {
   const dispatch = useDispatch();
   const { Poster, Title, imdbRating, Runtime, imdbID } = item;
   return (
