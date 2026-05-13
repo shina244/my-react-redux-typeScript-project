@@ -42,7 +42,7 @@ export const apiAsync = createAsyncThunk(
   "movies/apiAsync",
   async (movieName: string) => {
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=${KEY}&s=${movieName}`,
+      `https://www.omdbapi.com/?apikey=${KEY}&s=${movieName}`,
     );
     const data = await response.json();
     console.log(data);

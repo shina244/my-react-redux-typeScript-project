@@ -64,7 +64,7 @@ export const selectedApiAsync = createAsyncThunk(
   "selected/selectedApiAsync",
   async (id: string) => {
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=${KEY}&i=${id}`,
+      `https://www.omdbapi.com/?apikey=${KEY}&i=${id}`,
     );
 
     const data = await response.json();
