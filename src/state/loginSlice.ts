@@ -6,11 +6,24 @@ interface loginDetails {
   isLoggedIn: boolean;
 }
 
-const initialState: loginDetails = {
-  password: "",
-  email: "",
-  isLoggedIn: false,
+// Load login state from localStorage
+const getInitialState = (): loginDetails => {
+  try {
+    const savedState = localStorage.getItem("loginState");
+    if (savedState) {
+      return JSON.parse(savedState);
+    }
+  } catch (error) {
+    console.error("Failed to load login state from localStorage:", error);
+  }
+  return {
+    password: "",
+    email: "",
+    isLoggedIn: false,
+  };
 };
+
+const initialState: loginDetails = getInitialState();
 
 const loginSlice = createSlice({
   name: "login",
