@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { type AppDispatch, type RootState } from "./state/store";
 import { FiLogOut } from "react-icons/fi";
 import { onLogOut } from "./state/loginSlice";
+import { clearSearch } from "./state/omdbSlice";
 
 interface NavBar {
   children: ReactElement[];
@@ -42,12 +43,25 @@ function InputBar() {
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    if (!input.trim()) {
+      dispatch(clearSearch());
+      return;
+    }
+
+    const delayTimer = setTimeout(() => {
+      dispatch(apiAsync(input));
+    }, 1000);
+
+    return () => clearTimeout(delayTimer);
+  }, [input, dispatch]);
   return (
     <input
       value={input}
       onChange={(e) => {
         setInput(e.target.value);
-        dispatch(apiAsync(e.target.value));
+        // dispatch(apiAsync(e.target.value));
       }}
       placeholder="Search..."
       className="search"

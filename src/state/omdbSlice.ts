@@ -23,7 +23,11 @@ const initialState: Movie = {
 const omdbSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {},
+  reducers: {
+    clearSearch: (state) => {
+      state.data = [];
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(apiAsync.pending, (state) => {
       state.isLoading = true;
@@ -42,7 +46,7 @@ export const apiAsync = createAsyncThunk(
   "movies/apiAsync",
   async (movieName: string) => {
     const response = await fetch(
-      `https://www.omdbapi.com/?apikey=${KEY}&s=${movieName}&page=2`,
+      `https://www.omdbapi.com/?apikey=${KEY}&s=${movieName}`,
     );
     const data = await response.json();
     console.log(data);
@@ -51,3 +55,4 @@ export const apiAsync = createAsyncThunk(
 );
 
 export default omdbSlice.reducer;
+export const { clearSearch } = omdbSlice.actions;
